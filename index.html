@@ -46,8 +46,8 @@
 		(function () {
 			var ul = document.querySelector('ul'), // взяли список
 				button = document.querySelector('button'), // взяли кнопку
-				count = myUl.children.length, // количество єлементов в ул-е
-				lengthOfElement = parseInt(getComputedStyle(ul.parentNode).width), //чис значение ширині одного ли
+				count = ul.children.length, // количество єлементов в ул-е
+				lengthOfElement = parseInt(getComputedStyle(ul.firstElementChild).width), //чис значение ширині одного ли
 				width = count * lengthOfElement,
 			  limit = -((count - 1) * lengthOfElement); // максимум,на что может сдвинуться ул
 
@@ -63,37 +63,11 @@
 					}
 				}
 
-			  function createStyle(property, arguments, ulElement){
-			  	ulElement.style.cssText += property +' : '+ arguments +' px;'
+			  function createStyle(prop, arg, ulElement){
+			  	ulElement.style.cssText += prop +':'+ arg +'px';
 			  }
 		}
 )();
-// (function(){
-// 			var ul = document.querySelector('ul'),
-// 				span = document.querySelector('button'),
-// 				count = ul.children.length,
-// 				static = parseInt(getComputedStyle(ul.parentNode).getPropertyValue('width')),
-// 				width = static * count,
-// 				limit = -(static * (count - 1));
-
-// 			createStyle('width', width, ul);
-
-// 			span.onclick = handler;
-
-// 			function handler() {
-// 				var left = isNaN(parseInt(ul.style.left)) ? 0 : parseInt(ul.style.left);
-// 				if(left == limit){
-// 					return;
-// 				} else {
-// 					createStyle('left', (left - static), ul);
-// 				}
-// 			}
-
-// 			function createStyle(prop, args, el){
-// 				el.style.cssText += prop+":"+args+"px";
-// 			}
-			
-// 		})();
 	</script>
 </body>
 </html>
