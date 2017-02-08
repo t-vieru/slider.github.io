@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slider</title>
+</head>
+<body>
+	<style type="text/css">
+		*{
+		margin: 0;
+	}
+		#myDiv{
+			width: 200px;
+			height: 200px;
+			border: 3px solid black;
+			margin-left: 100px;
+			margin-top: 100px;
+			display: inline-block;
+			overflow: hidden;
+		}
+		#myUl{
+		padding: 0;
+		text-align: center;
+		position: relative;
+		list-style: none;
+		}
+	li{
+		width: 200px;
+		height: 200px;
+		background: yellow;
+		float: left;
+	}
+	
+	</style>
+
+	<div id="myDiv">
+		<ul id="myUl">
+			<li >first</li>
+			<li >second</li>
+			<li >third</li>
+		</ul>
+	</div>
+	<button id="button">нажать</button>
+
+	<script >
+		(function () {
+			var ul = document.querySelector('ul'), // взяли список
+				button = document.querySelector('button'), // взяли кнопку
+				count = myUl.children.length, // количество єлементов в ул-е
+				lengthOfElement = parseInt(getComputedStyle(ul.parentNode).width), //чис значение ширині одного ли
+				width = count * lengthOfElement,
+			  limit = -((count - 1) * lengthOfElement); // максимум,на что может сдвинуться ул
+
+			  createStyle('width', width, ul); // создаем стиль 1-что  задать,2 какой размерности,3-какому єлементу
+			  button.onclick = moveLeft;
+
+				function moveLeft(){
+					var left = isNaN(parseInt(ul.style.left)) ? 0 : parseInt(ul.style.left);
+					if(left == limit){
+						return
+					}else{
+						createStyle('left', (left - lengthOfElement), ul);
+					}
+				}
+
+			  function createStyle(property, arguments, ulElement){
+			  	ulElement.style.cssText += property +' : '+ arguments +' px;'
+			  }
+		}
+)();
+// (function(){
+// 			var ul = document.querySelector('ul'),
+// 				span = document.querySelector('button'),
+// 				count = ul.children.length,
+// 				static = parseInt(getComputedStyle(ul.parentNode).getPropertyValue('width')),
+// 				width = static * count,
+// 				limit = -(static * (count - 1));
+
+// 			createStyle('width', width, ul);
+
+// 			span.onclick = handler;
+
+// 			function handler() {
+// 				var left = isNaN(parseInt(ul.style.left)) ? 0 : parseInt(ul.style.left);
+// 				if(left == limit){
+// 					return;
+// 				} else {
+// 					createStyle('left', (left - static), ul);
+// 				}
+// 			}
+
+// 			function createStyle(prop, args, el){
+// 				el.style.cssText += prop+":"+args+"px";
+// 			}
+			
+// 		})();
+	</script>
+</body>
+</html>
